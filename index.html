@@ -12,6 +12,7 @@
     }
 h1 {
   font-size: 6vw;
+ margin top: 20px;
 }
 
 p {
@@ -20,7 +21,7 @@ p {
     .screen {
       display: none;
       height: 100vh;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       flex-direction: column;
    overflow-y: auto;
@@ -33,18 +34,42 @@ padding: 20px;
 
     button {
       margin-top: 20px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border: none;
-      border-radius: 20px;
+      border-radius: 25px;
       background: #1e293b;
       color: white;
-      font-size: 16px;
+      font-size: 4.5vw;
+      min-width: 140px;
+     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2)
+      transition: all 0.2s ease;
     }
+button:active {
+  transform: scale(0.95);
+}
+    button:hover {
+    background: #334155
+    }
+  .cake {
+  font-size: 80px;
+  margin-top: 20px;
+  animation: bounce 1s infinite, glow 1.5s infinite alternate;
+    transition: transform 0.3s ease;
+}
 
-    .cake {
-      font-size: 80px;
-      margin-top: 20px;
-    }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff;
+  }
+  to {
+    text-shadow: 0 0 25px #ff69b4;
+  }
+}
   </style>
 </head>
 
@@ -72,11 +97,11 @@ padding: 20px;
 <div class="screen" id="s4">
   <h1>🎂 Happy Birthday 🎉</h1>
 
-  <div class="cake">🎂</div>
+<div class="cake" id="cake">🎂</div>
 
-  <button onclick="this.innerText='Bas itna hi cake milega 😌'; playMusic(); setTimeout(()=>next('s5'), 2000)">
-    cut the cake
-  </button>
+<button onclick="cutCake(this)">
+  cut the cake
+</button>
 </div>
 
 <!-- Screen 5 (Gift) -->
@@ -169,6 +194,27 @@ function showGift() {
   document.getElementById("btn1").addEventListener("click", function() {
   next('s2');
 });
+  function cutCake(btn) {
+  let cake = document.getElementById("cake");
+
+  // 🎂 → 🍰 change
+  cake.innerText = "🍰";
+
+  // text change
+  btn.innerText = "Bas itna hi cake milega 😌";
+
+  // small animation
+  cake.style.transform = "scale(1.2)";
+  setTimeout(() => {
+    cake.style.transform = "scale(1)";
+  }, 300);
+
+  // 🎶 play music
+  playMusic();
+
+  // go next
+  setTimeout(() => next('s5'), 2500);
+  }
 </script>
 
 </body>

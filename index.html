@@ -45,7 +45,7 @@
 <!-- Screen 1 -->
 <div class="screen active" id="s1">
   <h1>Oye 👀<br>click kar na…</h1>
-  <button onclick="next('s2')">don’t click me 😐</button>
+  <button id="btn1">don’t click me 😐</button>
 </div>
 
 <!-- Screen 2 -->
@@ -66,7 +66,7 @@
 
   <div class="cake">🎂</div>
 
-  <button onclick="this.innerText='Bas itna hi cake milega 😌'; playMusic(); setTimeout(()=>next('s5'), 800)">
+  <button onclick="this.innerText='Bas itna hi cake milega 😌'; playMusic(); setTimeout(()=>next('s5'), 2500)">
     cut the cake
   </button>
 </div>
@@ -158,6 +158,9 @@ function showGift() {
     origin: { y: 0.6 }
   });
 }
+  document.getElementById("btn1").addEventListener("click", function() {
+  next('s2');
+});
 </script>
 
 </body>
